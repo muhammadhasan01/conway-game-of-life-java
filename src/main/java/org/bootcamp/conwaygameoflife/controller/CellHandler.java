@@ -40,4 +40,12 @@ public class CellHandler {
     }
     return numOfSurvivors;
   }
+
+  public boolean isCellSurvive(Cell c) {
+    if (!aliveCells.contains(c)) {
+      return false;
+    }
+    int cntSurviveCell = getNumOfSurvivingNeighboringCell(c);
+    return cntSurviveCell == 2 || cntSurviveCell == 3;
+  }
 }
