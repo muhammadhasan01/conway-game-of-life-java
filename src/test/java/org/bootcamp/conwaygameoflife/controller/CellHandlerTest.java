@@ -19,6 +19,7 @@ class CellHandlerTest {
   private final Cell two = new Cell(1, 2);
   private final Cell three = new Cell(1, 3);
   private final Cell four = new Cell(2, 2);
+  private final Cell five = new Cell(0, 2);
   private HashSet<Cell> aliveCells;
 
   @BeforeEach
@@ -126,5 +127,18 @@ class CellHandlerTest {
     assertEquals(1, cntDeadCell.get(first));
     assertEquals(2, cntDeadCell.get(second));
     assertNull(cntDeadCell.get(one));
+  }
+
+  @Test
+  void getCellsToBeResurrected_onThreeSpecifiedCells_shouldReturnResurrectedCells() {
+    aliveCells.add(one);
+    aliveCells.add(two);
+    aliveCells.add(three);
+
+    CellHandler cellHandler = new CellHandler(aliveCells);
+    List<Cell> cellsToBeResurrected = cellHandler.getCellsToBeResurrected();
+
+    assertTrue(cellsToBeResurrected.contains(four));
+    assertTrue(cellsToBeResurrected.contains(five));
   }
 }

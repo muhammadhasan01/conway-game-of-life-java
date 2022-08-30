@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import org.bootcamp.conwaygameoflife.model.Cell;
 
 public class CellHandler {
@@ -73,5 +74,16 @@ public class CellHandler {
       }
     }
     return cntDeadCell;
+  }
+
+  public List<Cell> getCellsToBeResurrected() {
+    List<Cell> cellsToBeResurrected = new ArrayList<>();
+    HashMap<Cell, Integer> cntDeadCell = getCntDeadCell();
+    for (Map.Entry<Cell, Integer> entry : cntDeadCell.entrySet()) {
+      if (entry.getValue() == 3) {
+        cellsToBeResurrected.add(entry.getKey());
+      }
+    }
+    return cellsToBeResurrected;
   }
 }
