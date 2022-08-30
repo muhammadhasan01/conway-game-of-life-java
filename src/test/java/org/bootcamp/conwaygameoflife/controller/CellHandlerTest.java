@@ -94,4 +94,18 @@ class CellHandlerTest {
 
     assertTrue(cellHandler.isCellSurvive(two));
   }
+
+  @Test
+  void getCellsToBeDead_onThreeSpecifiedCells_shouldReturnDeadCells() {
+    aliveCells.add(one);
+    aliveCells.add(two);
+    aliveCells.add(three);
+
+    CellHandler cellHandler = new CellHandler(aliveCells);
+    List<Cell> cellsToBeDead = cellHandler.getCellsToBeDead();
+
+    assertTrue(cellsToBeDead.contains(one));
+    assertTrue(cellsToBeDead.contains(three));
+    assertFalse(cellsToBeDead.contains(two));
+  }
 }

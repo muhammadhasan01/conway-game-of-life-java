@@ -48,4 +48,14 @@ public class CellHandler {
     int cntSurviveCell = getNumOfSurvivingNeighboringCell(c);
     return cntSurviveCell == 2 || cntSurviveCell == 3;
   }
+
+  public List<Cell> getCellsToBeDead() {
+    List<Cell> cellsToBeDead = new ArrayList<>();
+    for (Cell c : aliveCells) {
+      if (!isCellSurvive(c)) {
+        cellsToBeDead.add(c);
+      }
+    }
+    return cellsToBeDead;
+  }
 }
