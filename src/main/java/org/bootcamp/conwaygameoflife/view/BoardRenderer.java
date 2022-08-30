@@ -5,8 +5,8 @@ import org.bootcamp.conwaygameoflife.model.Cell;
 
 public class BoardRenderer {
 
-  private static final char ALIVE_CELL = '#';
-  private static final char DEAD_CELL = ' ';
+  public static final char ALIVE_CELL = '#';
+  public static final char DEAD_CELL = ' ';
 
   private final HashSet<Cell> aliveCells;
 
