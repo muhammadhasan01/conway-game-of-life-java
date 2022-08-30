@@ -37,4 +37,14 @@ class BoardRendererTest {
 
     assertEquals(expected, result);
   }
+
+  @Test
+  void renderDynamicCell_onThreeSpecifiedCells_shouldReturnCorrectRender() {
+    BoardRenderer boardRenderer = new BoardRenderer(aliveCells);
+
+    String expected = boardRenderer.renderCell(-1, 3, -1, 1);
+    String result = boardRenderer.renderDynamicCell();
+
+    assertEquals(expected, result);
+  }
 }

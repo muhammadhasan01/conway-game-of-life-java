@@ -25,4 +25,18 @@ public class BoardRenderer {
     }
     return sb.toString();
   }
+
+  public String renderDynamicCell() {
+    int minColumn = Integer.MAX_VALUE;
+    int maxColumn = -Integer.MAX_VALUE;
+    int minRow = Integer.MAX_VALUE;
+    int maxRow = -Integer.MAX_VALUE;
+    for (Cell p : aliveCells) {
+      minColumn = Math.min(minColumn, p.column());
+      maxColumn = Math.max(maxColumn, p.column());
+      minRow = Math.min(minRow, p.row());
+      maxRow = Math.max(maxRow, p.row());
+    }
+    return renderCell(minColumn - 1, maxColumn + 1, minRow - 1, maxRow + 1);
+  }
 }
