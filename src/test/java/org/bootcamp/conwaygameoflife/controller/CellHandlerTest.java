@@ -2,11 +2,29 @@ package org.bootcamp.conwaygameoflife.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.HashSet;
 import java.util.List;
 import org.bootcamp.conwaygameoflife.model.Cell;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CellHandlerTest {
+
+  private final Cell one = new Cell(1, 1);
+  private final Cell two = new Cell(1, 2);
+  private final Cell three = new Cell(1, 3);
+  private HashSet<Cell> aliveCells;
+
+  @BeforeEach
+  void setUp() {
+    aliveCells = new HashSet<>();
+  }
+
+  @AfterEach
+  void tearDown() {
+    aliveCells.clear();
+  }
 
   @Test
   void getNeighboringCell_onCertainCell_shouldBeValidNeighbors() {
@@ -25,5 +43,18 @@ class CellHandlerTest {
     List<Cell> actualList = cellHandler.getNeighboringCell(new Cell(0, 0));
 
     assertEquals(expectedList, actualList);
+  }
+
+  @Test
+  void getNumOfSurvivingNeighboringCell_onCertainCell_shouldBeCorrectValue() {
+    aliveCells.add(one);
+    aliveCells.add(two);
+    aliveCells.add(three);
+
+    CellHandler cellHandler = new CellHandler(aliveCells);
+
+    assertEquals(cellHandler.getNumOfSurvivingNeighboringCell(one), 1);
+    assertEquals(cellHandler.getNumOfSurvivingNeighboringCell(two), 2);
+    assertEquals(cellHandler.getNumOfSurvivingNeighboringCell(three), 1);
   }
 }
