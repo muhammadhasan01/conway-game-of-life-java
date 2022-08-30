@@ -1,6 +1,7 @@
 package org.bootcamp.conwaygameoflife.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import org.bootcamp.conwaygameoflife.model.Cell;
@@ -57,5 +58,20 @@ public class CellHandler {
       }
     }
     return cellsToBeDead;
+  }
+
+  public HashMap<Cell, Integer> getCntDeadCell() {
+    HashMap<Cell, Integer> cntDeadCell = new HashMap<>();
+    for (Cell c : aliveCells) {
+      List<Cell> neighboringCells = getNeighboringCell(c);
+      for (Cell cell : neighboringCells) {
+        if (aliveCells.contains(cell)) {
+          continue;
+        }
+        int res = cntDeadCell.getOrDefault(cell, 0);
+        cntDeadCell.put(cell, res + 1);
+      }
+    }
+    return cntDeadCell;
   }
 }

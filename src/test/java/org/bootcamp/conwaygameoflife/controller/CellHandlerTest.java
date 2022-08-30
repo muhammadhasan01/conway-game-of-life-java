@@ -2,8 +2,10 @@ package org.bootcamp.conwaygameoflife.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import org.bootcamp.conwaygameoflife.model.Cell;
@@ -107,5 +109,22 @@ class CellHandlerTest {
     assertTrue(cellsToBeDead.contains(one));
     assertTrue(cellsToBeDead.contains(three));
     assertFalse(cellsToBeDead.contains(two));
+  }
+
+  @Test
+  void getCntDeadCell_onThreeSpecifiedCells_shouldReturnValidCntDeadCells() {
+    aliveCells.add(one);
+    aliveCells.add(two);
+    aliveCells.add(three);
+
+    CellHandler cellHandler = new CellHandler(aliveCells);
+    HashMap<Cell, Integer> cntDeadCell = cellHandler.getCntDeadCell();
+
+    Cell first = new Cell(0, 0);
+    Cell second = new Cell(0, 1);
+
+    assertEquals(1, cntDeadCell.get(first));
+    assertEquals(2, cntDeadCell.get(second));
+    assertNull(cntDeadCell.get(one));
   }
 }
