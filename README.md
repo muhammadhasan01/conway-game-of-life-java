@@ -16,4 +16,10 @@ TBD
 
 ## How to test
 
-TBD
+You can test this project by using this command:
+
+```bash
+./gradlew test
+```
+
+To open the test coverage, simply `open jacoco/test/html/index.html`.
